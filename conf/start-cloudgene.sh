@@ -8,6 +8,19 @@ else
 	echo "Currently only the --repository flag is implemented!"
 fi
 
+CMD=$3
+if [[ "$CMD" == "--mvn" ]];
+then
+for d in /opt/cloudgene/applications/*;
+ do 
+ if [  -f $d/pom.xml ]
+then
+  echo "File exist."
+ cd $d;mvn install
+fi
+done
+fi
+
 # Connect repository to Cloudgene
 sudo cp /opt/cloudgene/applications/config/settings.yaml -R /opt/cloudgene/config/settings.yaml
 
